@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Actions -->
+        <record id="action_vsm_modulo" model="ir.actions.act_window">
+            <field name="name">Modulos</field>
+            <field name="res_model">vsm.modulo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_vsm" name="VSM" />
+        <menuitem id="menu_modulo" name="Modulos" parent="menu_vsm" action="action_vsm_modulo" />
+
+        <!-- Views -->
+        <record id="view_modulo_tree" model="ir.ui.view">
+            <field name="name">vsm.modulo.tree</field>
+            <field name="model">vsm.modulo</field>
+            <field name="arch" type="xml">
+                <tree string="Módulo">
+                    <field name="id_bloque" />
+                    <field name="nombre" />
+                    <field name="costo_materiales" />
+                    <field name="costos_extras" />
+                    <field name="costo_total" />
+                    <field name="informacion_adicional" />
+                    <field name="imagen" widget="image" options="{'size': [128, 240]}" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_modulo_form" model="ir.ui.view">
+            <field name="name">vsm.modulo.form</field>
+            <field name="model">vsm.modulo</field>
+            <field name="arch" type="xml">
+                <form string="Modulo">
+                    <sheet>
+                        <group>
+                            <group>
+                                <group string="Información General">
+                                    <field name="id_bloque" />
+                                    <field name="nombre" />
+                                </group>
+                                <group string="Costos">
+                                    <field name="costo_materiales" />
+                                    <field name="costos_extras" />
+                                    <field name="costo_total" />
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="Información Adicional">
+                                    <field name="informacion_adicional" />
+                                </page>
+                                <page string="Imagen">
+                                    <field name="imagen" widget="image" />
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

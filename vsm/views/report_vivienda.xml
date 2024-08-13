@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_vivienda" model="ir.actions.report">
+            <field name="name">Vivienda Report</field>
+            <field name="model">vsm.vivienda</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vsm.report_vivienda</field>
+            <field name="report_file">vsm.report_vivienda</field>
+            <field name="binding_model_id" ref="model_vsm_vivienda"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

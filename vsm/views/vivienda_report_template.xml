@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_vivienda">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <h2>Reporte de Vivienda</h2>
+                    <p><strong>Cliente:</strong> <t t-esc="doc.id_cliente.name"/></p>
+                    <p><strong>Orientación:</strong> <t t-esc="doc.orientacion"/></p>
+                    <p><strong>Largo del Terreno:</strong> <t t-esc="doc.largo_terreno"/></p>
+                    <p><strong>Ancho del Terreno:</strong> <t t-esc="doc.ancho_terreno"/></p>
+                    <p><strong>Cubierta:</strong> <t t-esc="doc.cubierta"/></p>
+                    <p><strong>Piso:</strong> <t t-esc="doc.piso"/></p>
+                    <p><strong>Terminación:</strong> <t t-esc="doc.terminacion"/></p>
+                    <h3>Módulos en Vivienda</h3>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Costo Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.modulos_vivienda_ids" t-as="modulo">
+                                <tr>
+                                    <td><t t-esc="modulo.modulo_id.nombre"/></td>
+                                    <td><t t-esc="modulo.cantidad"/></td>
+                                    <td><t t-esc="modulo.costo_total"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <p><strong>Costo Total de la Vivienda:</strong> <t t-esc="doc.costo_total_vivienda"/></p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

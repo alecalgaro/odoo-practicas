@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!-- Kanban View -->
+        <record id="view_proyecto_kanban" model="ir.ui.view">
+            <field name="name">proyecto.kanban</field>
+            <field name="model">vsm.proyecto</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="etapa">
+                    <field name="cliente_id"/>
+                    <field name="vivienda_id"/>
+                    <field name="etapa"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_details">
+                                    <div><field name="cliente_id"/></div>
+                                    <div><field name="vivienda_id"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                    <group name="etapa" string="Etapa">
+                        <group name="planificacion" string="Planificación" sequence="1"/>
+                        <group name="construccion" string="Construcción" sequence="2"/>
+                        <group name="finalizado" string="Finalizado" sequence="3"/>
+                    </group>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_proyecto" model="ir.actions.act_window">
+            <field name="name">Proyectos</field>
+            <field name="res_model">vsm.proyecto</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_vsm" name="VSM" />
+        <menuitem id="menu_proyecto" name="Proyectos" parent="menu_vsm" action="action_proyecto"/>
+    </data>
+</odoo>

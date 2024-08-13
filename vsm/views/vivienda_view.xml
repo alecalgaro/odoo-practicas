@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Actions -->
+        <record id="action_vsm_vivienda" model="ir.actions.act_window">
+            <field name="name">Viviendas</field>
+            <field name="res_model">vsm.vivienda</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_vsm" name="VSM" />
+        <menuitem id="menu_vivienda" name="Viviendas" parent="menu_vsm" action="action_vsm_vivienda" />
+
+        <!-- Views -->
+        <record id="view_vivienda_tree" model="ir.ui.view">
+            <field name="name">vsm.vivienda.tree</field>
+            <field name="model">vsm.vivienda</field>
+            <field name="arch" type="xml">
+                <tree string="Vivienda">
+                    <field name="id_cliente" />
+                    <field name="orientacion" />
+                    <field name="largo_terreno" />
+                    <field name="ancho_terreno" />
+                    <field name="cubierta" />
+                    <field name="piso" />
+                    <field name="terminacion" />
+                    <field name="modulos_vivienda_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_vivienda_form" model="ir.ui.view">
+            <field name="name">vsm.vivienda.form</field>
+            <field name="model">vsm.vivienda</field>
+            <field name="arch" type="xml">
+                <form string="Vivienda">
+                    <sheet>
+                        <header>
+                            <button name="action_print_report" type="object" string="Generar Reporte PDF" class="btn-primary"/>
+                        </header>
+                        <group string="Información General">
+                            <field name="id_cliente" />
+                        </group>
+                        <group string="Dimensiones del Terreno">
+                            <field name="largo_terreno" />
+                            <field name="ancho_terreno" />
+                        </group>
+                        <group string="Detalles de la Vivienda">
+                            <field name="orientacion" />
+                            <field name="cubierta" />
+                            <field name="piso" />
+                            <field name="terminacion" />
+                        </group>
+                        <group string="Módulos">
+                            <field name="modulos_vivienda_ids">
+                                <tree editable="bottom">
+                                    <field name="modulo_id" />
+                                    <field name="cantidad" />
+                                    <field name="costo_total" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Costo Total">
+                            <field name="costo_total_vivienda" />
+                        </group>
+                        <group string="Acciones">
+                            <button name="export_to_txt" string="Exportar a TXT" type="object" class="btn-primary" icon="fa-download" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
