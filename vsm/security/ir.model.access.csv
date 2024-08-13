@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vsm_cliente,vsm_cliente,model_vsm_cliente,base.group_user,1,1,1,1
+access_vsm_vivienda,vsm_vivienda,model_vsm_vivienda,base.group_user,1,1,1,1
+access_vsm_modulo,vsm_modulo,model_vsm_modulo,base.group_user,1,1,1,1
+access_vsm_modulo_vivienda,vsm_modulo_vivienda,model_vsm_modulo_vivienda,base.group_user,1,1,1,1
+access_vsm_proyecto,vsm_proyecto,model_vsm_proyecto,base.group_user,1,1,1,1
