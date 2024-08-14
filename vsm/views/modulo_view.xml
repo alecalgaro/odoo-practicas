@@ -12,7 +12,7 @@
         <menuitem id="menu_vsm" name="VSM" />
         <menuitem id="menu_modulo" name="Modulos" parent="menu_vsm" action="action_vsm_modulo" />
 
-        <!-- Views -->
+        <!-- Tree views -->
         <record id="view_modulo_tree" model="ir.ui.view">
             <field name="name">vsm.modulo.tree</field>
             <field name="model">vsm.modulo</field>
@@ -29,6 +29,7 @@
             </field>
         </record>
 
+        <!-- Form view -->
         <record id="view_modulo_form" model="ir.ui.view">
             <field name="name">vsm.modulo.form</field>
             <field name="model">vsm.modulo</field>

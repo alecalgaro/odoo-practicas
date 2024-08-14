@@ -13,6 +13,9 @@ class Budget(models.Model):
 
     @api.depends('move_ids.amount', 'move_ids.type')
     def _compute_current_amount(self):
+        """
+        Metodo para calcular el presupuesto actual.
+        """
         for budget in self:
             total = budget.initial_amount
             for move in budget.move_ids:

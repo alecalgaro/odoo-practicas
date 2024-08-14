@@ -36,6 +36,9 @@ class Vivienda(models.Model):
             record.costo_total_vivienda = sum(modulo.costo_total for modulo in record.modulos_vivienda_ids)
 
     def export_to_txt(self):
+        """
+        Metodo para exportar la informacion de la vivienda a un archivo TXT.
+        """
         for record in self:
             content = f"{record.orientacion}\n"
             content += f"{record.largo_terreno}\n"
@@ -64,6 +67,8 @@ class Vivienda(models.Model):
                 'target': 'self',
             }
     
-    # Para generar un reporte en PDF con la información de la vivienda
     def action_print_report(self):
+        """
+        Metodo para generar un reporte en PDF con la informacion de la vivienda.
+        """
         return self.env.ref('vsm.action_report_vivienda').report_action(self)

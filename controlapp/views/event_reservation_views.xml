@@ -3,7 +3,7 @@
     <data>
         <!-- Form view -->
         <record id="view_event_reservation_form" model="ir.ui.view">
-            <field name="name">event.reservation.form</field>
+            <field name="name">controlapp.event.reservation.form</field>
             <field name="model">controlapp.event.reservation</field>
             <field name="arch" type="xml">
                 <form string="Reserva">

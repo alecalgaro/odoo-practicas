@@ -19,5 +19,9 @@ class Modulo(models.Model):
             modulo.costo_total = modulo.costo_materiales + modulo.costos_extras
 
     def _compute_display_name(self):
+        """
+        Metodo para calcular el nombre a mostrar del modulo.
+        Odoo ejecuta automaticamente el metodo _compute_display_name.
+        """
         for modulo in self:
             modulo.display_name = modulo.nombre

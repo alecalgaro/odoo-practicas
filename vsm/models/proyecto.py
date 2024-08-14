@@ -10,3 +10,7 @@ class Proyecto(models.Model):
         ('planificacion', 'Planificación'),
         ('construccion', 'Construcción'),
         ('finalizado', 'Finalizado')], string='Etapa', required=True, default='planificacion')
+    
+    def _compute_display_name(self):
+        for project in self:
+            project.display_name = f'Proyecto de: {project.cliente_id.name}'
