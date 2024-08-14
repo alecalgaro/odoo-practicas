@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_event_reservation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Reserva de Fecha</h2>
+                        <p><strong>Nombre:</strong> <span t-esc="doc.name"/></p>
+                        <p><strong>Teléfono:</strong> <span t-esc="doc.phone"/></p>
+                        <p><strong>Email:</strong> <span t-esc="doc.email"/></p>
+                        <p><strong>Fecha de Inicio:</strong> <span t-esc="doc.start_datetime"/></p>
+                        <p><strong>Fecha de Fin:</strong> <span t-esc="doc.end_datetime"/></p>
+                        <p><strong>Descripción:</strong> <span t-esc="doc.description"/></p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

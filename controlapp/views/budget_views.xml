@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_budget_form" model="ir.ui.view">
+            <field name="name">controlapp.budget.form</field>
+            <field name="model">controlapp.budget</field>
+            <field name="arch" type="xml">
+                <form string="Presupuesto">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="initial_amount" widget="monetary"/>
+                            <field name="current_amount" widget="monetary" readonly="1"
+                                decoration-info="current_amount &gt;= 0" 
+                                decoration-danger="current_amount &lt; 0"
+                                class="custom-current-amount"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Movimientos">
+                                <field name="move_ids">
+                                    <tree editable="bottom">
+                                        <field name="date"/>
+                                        <field name="amount" widget="monetary" 
+                                            decoration-info="type == 'income'" 
+                                            decoration-danger="type == 'expense'"/>
+                                        <field name="type" 
+                                            decoration-info="type == 'income'" 
+                                            decoration-danger="type == 'expense'"/>
+                                        <field name="description"/>
+                                        <field name="currency_id" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_budget_tree" model="ir.ui.view">
+            <field name="name">controlapp.budget.tree</field>
+            <field name="model">controlapp.budget</field>
+            <field name="arch" type="xml">
+                <tree string="Presupuestos">
+                    <field name="name"/>
+                    <field name="current_amount" widget="monetary"
+                        decoration-info="current_amount &gt;= 0" 
+                        decoration-danger="current_amount &lt; 0"/>
+                    <field name="initial_amount" widget="monetary"/>
+                    <field name="currency_id" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_budget" model="ir.actions.act_window">
+            <field name="name">Presupuestos</field>
+            <field name="res_model">controlapp.budget</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_app_root" name="ControlApp"/>
+        <menuitem id="menu_budget" name="Presupuestos" parent="menu_app_root" action="action_budget" sequence="1"/>
+    </data>
+</odoo>

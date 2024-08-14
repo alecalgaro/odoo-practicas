@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_budget_move_form" model="ir.ui.view">
+            <field name="name">controlapp.move.form</field>
+            <field name="model">controlapp.move</field>
+            <field name="arch" type="xml">
+                <form string="Movimiento">
+                    <sheet>
+                        <group>
+                            <field name="date"/>
+                            <field name="amount" widget="monetary" 
+                                decoration-info="type == 'income'" 
+                                decoration-danger="type == 'expense'"/>
+                            <field name="type" 
+                                decoration-info="type == 'income'" 
+                                decoration-danger="type == 'expense'"/>
+                            <field name="description"/>
+                            <field name="budget_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_budget_move_tree" model="ir.ui.view">
+            <field name="name">controlapp.move.tree</field>
+            <field name="model">controlapp.move</field>
+            <field name="arch" type="xml">
+                <tree string="Movimientos">
+                    <field name="date"/>
+                    <field name="amount" widget="monetary" 
+                        decoration-info="type == 'income'" 
+                        decoration-danger="type == 'expense'"/>
+                    <field name="type" 
+                        decoration-info="type == 'income'" 
+                        decoration-danger="type == 'expense'"/>
+                    <field name="description"/>
+                    <field name="budget_id"/>
+                    <field name="currency_id" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_budget_move" model="ir.actions.act_window">
+            <field name="name">Movimientos</field>
+            <field name="res_model">controlapp.move</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_app_root" name="ControlApp"/>
+        <menuitem id="menu_budget_move" name="Movimientos" parent="menu_app_root" action="action_budget_move" sequence="2"/>
+    </data>
+</odoo>

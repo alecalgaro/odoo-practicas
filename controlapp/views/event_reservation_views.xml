@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_event_reservation_form" model="ir.ui.view">
+            <field name="name">event.reservation.form</field>
+            <field name="model">controlapp.event.reservation</field>
+            <field name="arch" type="xml">
+                <form string="Reserva">
+                    <sheet>
+                        <header>
+                            <button name="action_print_report" string="Generar comprobante" type="object" class="btn-primary"/>
+                        </header>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_event_reservation_tree" model="ir.ui.view">
+            <field name="name">controlapp.event.reservation.tree</field>
+            <field name="model">controlapp.event.reservation</field>
+            <field name="arch" type="xml">
+                <tree string="Reservas">
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Calendar view -->
+        <record id="view_event_reservation_calendar" model="ir.ui.view">
+            <field name="name">controlapp.event.reservation.calendar</field>
+            <field name="model">controlapp.event.reservation</field>
+            <field name="arch" type="xml">
+                <calendar string="Reservas" date_start="start_datetime" date_stop="end_datetime">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="description"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_event_reservation" model="ir.actions.act_window">
+            <field name="name">Reserva de fechas</field>
+            <field name="res_model">controlapp.event.reservation</field>
+            <field name="view_mode">calendar,tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_app_root" name="ControlApp"/>
+        <menuitem id="menu_event_reservation" name="Reservas" parent="menu_app_root" action="action_event_reservation" sequence="3"/>
+    </data>
+</odoo>
