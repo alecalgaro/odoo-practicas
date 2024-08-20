@@ -8,3 +8,7 @@ La información de la vivienda se puede exportar en un archivo .txt para continu
 ## controlapp
 
 Módulo para mantener un control de presupuesto (ingresos y gastos) y gestionar la reserva de fechas, para ser utilizado en un salón de eventos.
+
+## alumnado
+
+Módulo simple para gestionar alumnos y sus entregas de informes. Creado para practicar el uso de herencia de modelos y vistas, heredando del modelo res.partner para utilizar la vista tree, kanban y personalizando la vista de formulario heredada.
