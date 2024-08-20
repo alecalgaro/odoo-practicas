@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_informe" model="ir.ui.view">
+            <field name="name">alumnado.informe.form</field>
+            <field name="model">alumnado.informe</field>
+            <field name="arch" type="xml">
+                <form string="Informe del Alumno">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="fecha_entrega"/>
+                            <field name="estado"/>
+                            <field name="comentarios"/>
+                            <field name="alumno_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

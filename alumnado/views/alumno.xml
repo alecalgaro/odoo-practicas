@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view heredada y personalizada -->
+        <record id="view_form_alumno" model="ir.ui.view">
+            <field name="name">res.partner.alumno.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/> <!-- Heredamos la vista original -->
+            <field name="mode">primary</field> <!-- Definimos esta vista como la primaria para el contexto del módulo -->
+            <field name="arch" type="xml">
+
+                <!-- Eliminar campos de la vista heredada: replace o detele -->
+                <!-- <xpath expr="//field[@name='company_name']" position="replace"/> -->
+
+                <!-- Ocultar campos de la vista heredada -->
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//group[.//field[@name='street']]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!-- Insertar nuevos campos en la vista heredada -->
+                <xpath expr="//sheet" position="inside">    <!-- Insertamos un nuevo grupo dentro (inside) de la hoja -->
+                    <group>
+                        <field name="matricula"/>
+                        <field name="nombre_proyecto"/>
+                        <field name="email"/>
+                        <field name="anio_cursado"/>
+                        <field name="is_alumno" invisible="1"/> <!-- Campo invisible para no mostrarlo en la vista -->
+                    </group>
+                    <notebook>
+                        <page string="Informes">
+                            <field name="informes_entregados">
+                                <tree>
+                                    <field name="nombre"/>
+                                    <field name="fecha_entrega"/>
+                                    <field name="estado"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Actions -->
+
+        <!-- Podemos especificar que cuando se ejecute el action principal (action_alumnos), 
+        cargue secuencialmente una serie de vistas que se le indican. Hay un modelo llamado 
+        "ir.actions.act_window.view" que se le puede indicar que vista va a cargar segun una secuencia.
+        Primero coloco el action principal y abajo los otros y voy explicando -->
+
+        <!-- Accion para abrir el formulario de creacion de alumnos -->
+        <record id="action_alumnos" model="ir.actions.act_window">
+            <field name="name">Alumnos</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <!-- Campo domain para filtrar y mostrar solo los alumnos y no otros contactos -->
+            <field name="domain">[('is_alumno', '=', True)]</field>
+            <!-- Campo context que guarda un diccionario (json) con cosas que se le van a pasar al cliente web
+            para que aplique esos valores al mostrar la informacion. En este caso, sirve para decir que el campo
+            is_alumno por defecto sea True siempre que se ingresa al formulario de creacion de alumnos -->
+            <field name="context">{'default_is_alumno': True}</field>
+        </record>
+
+        <!-- En primer lugar, vista que quiero que cargue (name="secuence eval="1") es la tree ("view_mode" tree),
+        mostrando la vista (view_id) tree base del modelo res.partner heredado, porque no cree otra vista tree
+        distinta. La referencia ref="base.view_partner_tree" se obtiene del "ID externo" desde Odoo.
+        Y como action (name="act_window_id") le asocio el action principal creado arriba (ref="action_alumnos") -->
+        <!-- Esto es simplemente para practicar y recordar, porque en realidad esa vista tree base de 
+        res.partnet en este caso no me sirve porque tiene un monton de campos innecesarios -->
+        <record id="action_view_alumnos_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"></field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="base.view_partner_tree"></field>
+            <field name="act_window_id" ref="action_alumnos"></field>
+        </record>
+        
+        <!-- En segundo lugar, la secuencia o vista que quiero que cargue es la form, pero ahora
+        si quiero cargar la vista form creada antes (ref="view_form_alumno") -->
+        <record id="action_view_alumnos_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"></field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_form_alumno"></field>
+            <field name="act_window_id" ref="action_alumnos"></field>
+        </record>
+
+        <!-- En tercer lugar, la secuencia o vista que quiero que cargue es la kanban -->
+        <record id="action_view_alumnos_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"></field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="base.res_partner_kanban_view"></field>
+            <field name="act_window_id" ref="action_alumnos"></field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_alumnado" name="Alumnado"/>
+        <menuitem id="menu_alumnos" name="Alumnos" parent="menu_alumnado" action="action_alumnos"/>
+
+    </data>
+</odoo>
