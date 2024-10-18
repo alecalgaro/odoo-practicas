@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_event_photo,access_event_photo,model_event_photo,base.group_user,1,1,1,1
+access_photo_photo,access_photo_photo,model_photo_photo,base.group_user,1,1,1,1
+access_qr_generator,access_qr_generator,model_qr_generator,base.group_user,1,1,1,1

@@ -1,0 +1,100 @@
+/* Estilos mobile first */
+
+/* Estilos generales */
+* {
+	font-size: 62.5%; /* 1rem = 10px si el tamaño de fuente base es 16px */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #fafafa;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	overflow: hidden; /* Evitar scroll */
+}
+
+/* Contenedor del formulario */
+.upload-container {
+	max-width: 100%;
+	width: 100%;
+	margin: 2rem;
+	padding: 2rem;
+	background-color: #fff;
+	border-radius: 1rem;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	text-align: center;
+}
+
+/* Titulo del formulario */
+h2 {
+	font-size: 3rem;
+	margin-bottom: 2rem;
+	color: #383838;
+}
+
+/* Formulario */
+form {
+	display: flex;
+	flex-direction: column;
+	color: #383838;
+}
+
+label {
+	font-size: 2rem;
+}
+
+/* Campos del formulario */
+input[type="text"],
+input[type="file"] {
+	margin: 1.5rem 0;
+	padding: 1rem;
+	font-size: 1.8rem;
+	text-align: center;
+	border: 0.1rem solid #ddd;
+	border-radius: 0.5rem;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Boton de envio */
+button {
+	padding: 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	font-size: 2rem;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+/* Estilos para dispositivos de escritorio */
+@media (min-width: 600px) {
+	.upload-container {
+		max-width: 40rem;
+		margin: 2rem;
+		padding: 2rem;
+	}
+
+	.upload-container h2 {
+		font-size: 2.5rem;
+	}
+
+	.upload-container input[type="text"],
+	.upload-container input[type="file"] {
+		padding: 1.2rem;
+	}
+
+	.upload-container button {
+		padding: 1.2rem;
+	}
+}

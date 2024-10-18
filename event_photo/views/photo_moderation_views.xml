@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_photo_form" model="ir.ui.view">
+            <field name="name">photo.form</field>
+            <field name="model">photo.photo</field>
+            <field name="arch" type="xml">
+                <form string="Foto">
+                    <sheet>
+                        <group>
+                            <field name="image" widget="image"/>
+                            <field name="status"/>
+                            <field name="event_id"/>
+                            <button name="action_approve" type="object" string="Aceptar" class="oe_highlight"/>
+                            <button name="action_reject" type="object" string="Rechazar" class="oe_highlight"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_photo_moderation_tree" model="ir.ui.view">
+            <field name="name">photo.moderation.tree</field>
+            <field name="model">photo.photo</field>
+            <field name="arch" type="xml">
+                <tree string="Fotos en revisión">
+                    <field name="image" widget="image" options="{'size': [200, 200]}"/>
+                    <field name="status"/>
+                    <field name="event_id"/>
+                    <button name="action_approve" type="object" string="Aceptar" class="oe_highlight"/>
+                    <button name="action_reject" type="object" string="Rechazar" class="oe_highlight"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <!-- Se muestran solo las fotos con estado en revision -->
+        <record id="action_photo_moderation" model="ir.actions.act_window">
+            <field name="name">Fotos en revisión</field>
+            <field name="res_model">photo.photo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('status', '=', 'in_review')]</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_root" name="Gestión de eventos" sequence="1"/>
+        <menuitem id="menu_photo_moderation" name="Fotos en revisión" parent="menu_root" action="action_photo_moderation"/>
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+    <template id="upload_photo_template">
+        <t t-call="web.layout">
+            <t t-set="title">Subir Foto</t>
+            
+            <!-- Incluir meta etiqueta de viewport en el head para permitir estilos responsive -->
+            <t t-jquery="head" t-operation="prepend">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </t>
+
+            <!-- Incluir archivo CSS -->
+            <link rel="stylesheet" type="text/css" href="/event_photo/static/src/css/upload_photo.css"/>
+            
+            <div class="upload-container">
+                <h2>Subir Foto</h2>
+
+                <form action="/submit_photo" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div>
+                        <label for="event_code">Código del evento:</label>
+                        <input type="text" id="event_code" name="event_code" required="required"/>
+                    </div>
+                    <div>
+                        <label for="photo">Foto:</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" required="required"/>
+                    </div>
+                    <button type="submit">Subir</button>
+                </form>
+                
+                <div id="message-container"></div>
+            </div>
+
+            <!-- Incluir archivo JS -->
+            <script type="text/javascript" src="/event_photo/static/src/js/upload_photo.js"></script>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_event_form" model="ir.ui.view">
+            <field name="name">event.form</field>
+            <field name="model">event.photo</field>
+            <field name="arch" type="xml">
+                <form string="Event">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="description"/>
+                            <field name="event_code"/>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree view -->
+        <record id="view_event_tree" model="ir.ui.view">
+            <field name="name">event.tree</field>
+            <field name="model">event.photo</field>
+            <field name="arch" type="xml">
+                <tree string="Event">
+                    <field name="name"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="event_code"/>
+                    <field name="is_active"/>
+                    <button name="open_show_photos" type="object" string="Abrir en pantalla gigante" class="oe_highlight"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_event" model="ir.actions.act_window">
+            <field name="name">Eventos</field>
+            <field name="res_model">event.photo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_root" name="Gestión de eventos" sequence="1"/>
+        <menuitem id="menu_event" name="Eventos" parent="menu_root" action="action_event"/>
+    </data>
+</odoo>

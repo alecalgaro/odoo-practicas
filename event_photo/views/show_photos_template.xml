@@ -1,0 +1,30 @@
+<odoo>
+    <template id="show_photos_template">
+        <!-- Llamo a la plantilla base web.layout que trae una estructura basica de la pagina -->
+        <t t-call="web.layout">     
+            <t t-set="title">Fotos del evento</t>
+            <!-- Variable photos_data con los datos de las fotos (el valor se pasa desde el controlador) -->
+            <t t-set="photos_data" t-value="json.dumps(photos)"/>
+            <!-- Variable event_id con el ID del evento (el valor se pasa desde el controlador) -->
+            <t t-set="event_id" t-value="event_id"/>
+            
+            <!-- Incluir archivo CSS con estilos personalizados para la pantalla gigante -->
+            <link rel="stylesheet" type="text/css" href="/event_photo/static/src/css/show_photos.css"/>
+            
+            <!-- Contenedor de fotos -->
+            <div id="photo-container">
+                <!-- Imagen con la primera foto de la lista de fotos -->
+                <img id="current-photo" t-att-src="'data:image/png;base64,' + photos[0]['image']" alt="Photo"/>
+                <img id="qr-code" src="/event_photo/static/src/img/QR.png" alt="QR Code"/>
+                <button id="fullscreen-button"></button>
+            </div>
+
+            <!-- Script que contiene los datos de las fotos en json para que JS puede acceder a los datos -->
+            <script id="photos-data" type="application/json"><t t-esc="photos_data"/></script>
+            <!-- Script que contiene el ID del evento para que JS pueda acceder al ID -->
+            <script id="event-id" type="application/json"><t t-esc="event_id"/></script>
+            <!-- Incluir archivo JS con logica de la pantalla gigante -->
+            <script type="text/javascript" src="/event_photo/static/src/js/show_photos.js"></script>
+        </t>
+    </template>
+</odoo>
